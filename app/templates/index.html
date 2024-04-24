@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nearest Hospital Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+
+    <!-- Include Leaflet CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+<!-- Include Leaflet JavaScript file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+<!-- Include Leaflet Draw CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+
+<!-- Include Leaflet Draw JavaScript file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+
+
+
+
+</head>
+<body>
+<div id="loader" class="loader" style="display: none;">
+    <div class="loader-spinner"></div>
+</div>
+
+
+    <div id="app">
+        <div id="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+      <header class="app-header">
+    <h2>FloodZone Hospital Finder</h2>
+</header>
+  <div>
+            <select id="locationDropdown" class="dropdown"></select>
+            <button class="blue-button" id="setCurrentLocationButton"><i class="fas fa-crosshairs home-icon"></i> Locate Me</button>
+            <button class="blue-button" id="searchButton"><i class="fas fa-search home-icon"></i> Find Hospitals</button>
+        </div>
+    </div>
+
+       <div style="display: flex; justify-content: space-between; align-items: center; ">
+    <span style="padding-left:20px; color: #034694; font-size: 14px;">Add a flood region on the Map by clicking on the polygon shape on the left, and starting to draw a connected polygon</span>
+    <button id="saveRegionButton" class="save-button" style="display:none;"><i class="fas fa-save home-icon"></i> Save Flood Area</button>
+</div>
+
+
+        <div id="map" style="height: 400px; margin-top: 20px;"></div>
+        <!-- Ensure that the flood impact info is outside and below the hospitalPanel div -->
+        <div id="floodImpactInfo" style="display:none; margin-top: 5px;">
+            <span id="floodImpactText" style="color: red; font-size: 14px;font-weight:bold;"></span>
+            <span id="distanceDifferenceText" style="font-size: 14px;font-weight:bold;"></span>
+        </div>
+        <div id="hospitalPanel">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Details</th>
+                        <th>Without Flood</th>
+                        <th id="floodImpactHeader" style="display:none;">With Flood</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nearest Hospital</td>
+                        <td id="hospitalNameWithoutFlood"></td>
+                        <td id="hospitalNameWithFlood" style="display:none;"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td id="addressWithoutFlood"></td>
+                        <td id="addressWithFlood" style="display:none;"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td id="phoneWithoutFlood"></td>
+                        <td id="phoneWithFlood" style="display:none;"></td>
+                    </tr>
+                    <tr>
+                        <td>Distance</td>
+                        <td id="distanceWithoutFlood"></td>
+                        <td id="distanceWithFlood" style="display:none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+
+</body>
+</html>
